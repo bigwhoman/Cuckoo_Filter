@@ -11,7 +11,9 @@ public class Main {
         cuckoo.insert("stall");
         cuckoo.insert("stell");
 
-        System.out.println(cuckoo.lookup("stell"));
+        System.out.println(cuckoo.lookup("stall"));
+        System.out.println(cuckoo.delete("stall"));
+        System.out.println(cuckoo.lookup("stall"));
         return ;
     }
 

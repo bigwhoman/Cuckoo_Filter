@@ -1,7 +1,4 @@
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
-import java.util.Formatter;
 import java.util.Random;
 
 
@@ -27,7 +24,7 @@ public class Cuckoo {
         // The hashes should be modded to the number of buckets
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
         Integer i2  = i1 ^ hash(f) % buckets;
-        
+
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if(bucketArray[i1][entry] == null){ 
                 bucketArray[i1][entry] = f;
@@ -60,6 +57,7 @@ public class Cuckoo {
         return false;
     }
 
+    // looks up if string x is in the hash table (returns true if **possibly in table**)
     public boolean lookup(String x){
         Integer f   = generateFingerprint(x, 8);
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
@@ -72,7 +70,6 @@ public class Cuckoo {
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if(bucketArray[i2][entry] != null && bucketArray[i2][entry].equals(f)){
-                bucketArray[i2][entry] = f;
                 return true;
             }
         }
@@ -80,8 +77,27 @@ public class Cuckoo {
         return false;
     }
 
-    public void delete(String x){
+    // deletes a key from table
+    public boolean delete(String x){
+        Integer f   = generateFingerprint(x, 8);
+        Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
+        Integer i2  = i1 ^ hash(f) % buckets; 
 
+        for(Integer entry = 0; entry < bucketEntries ; entry++){
+            if(bucketArray[i1][entry] != null && bucketArray[i1][entry].equals(f)){
+                bucketArray[i1][entry] = null;
+                return true;
+            }
+        }
+
+        for(Integer entry = 0; entry < bucketEntries ; entry++){
+            if(bucketArray[i2][entry] != null && bucketArray[i2][entry].equals(f)){
+                bucketArray[i1][entry] = null;
+                return true;
+            }
+        }        
+
+        return false;
     }
     
     // Generates a unique fingerprint (with len) for a text
