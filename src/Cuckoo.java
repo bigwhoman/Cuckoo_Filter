@@ -27,9 +27,9 @@ public class Cuckoo {
         // The hashes should be modded to the number of buckets
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
         Integer i2  = i1 ^ hash(f) % buckets;
-
+        
         for(Integer entry = 0; entry < bucketEntries ; entry++){
-            if(bucketArray[i1][entry] == null){
+            if(bucketArray[i1][entry] == null){ 
                 bucketArray[i1][entry] = f;
                 return true;
             }
@@ -41,7 +41,6 @@ public class Cuckoo {
                 return true;
             }
         }
-
         Random rand = new Random();
         Integer i = rand.nextInt(2) == 0 ? i1 : i2;
 
@@ -66,13 +65,13 @@ public class Cuckoo {
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
         Integer i2  = i1 ^ hash(f) % buckets; 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
-            if(bucketArray[i1][entry] != null && bucketArray[i1][entry] == f){
+            if(bucketArray[i1][entry] != null && bucketArray[i1][entry].equals(f)){
                 return true;
             }
         }
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
-            if(bucketArray[i2][entry] != null && bucketArray[i2][entry] == f){
+            if(bucketArray[i2][entry] != null && bucketArray[i2][entry].equals(f)){
                 bucketArray[i2][entry] = f;
                 return true;
             }
