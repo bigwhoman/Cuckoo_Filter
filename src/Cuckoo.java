@@ -25,7 +25,7 @@ public class Cuckoo {
         Integer f   = generateFingerprint(x, 8);
 
         // The hashes should be modded to the number of buckets
-        Integer i1  = x.hashCode() % buckets;
+        Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
         Integer i2  = i1 ^ hash(f) % buckets;
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
@@ -62,6 +62,22 @@ public class Cuckoo {
     }
 
     public boolean lookup(String x){
+        Integer f   = generateFingerprint(x, 8);
+        Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
+        Integer i2  = i1 ^ hash(f) % buckets; 
+        for(Integer entry = 0; entry < bucketEntries ; entry++){
+            if(bucketArray[i1][entry] != null && bucketArray[i1][entry] == f){
+                return true;
+            }
+        }
+
+        for(Integer entry = 0; entry < bucketEntries ; entry++){
+            if(bucketArray[i2][entry] != null && bucketArray[i2][entry] == f){
+                bucketArray[i2][entry] = f;
+                return true;
+            }
+        }
+        // Item does not exist
         return false;
     }
 
@@ -80,11 +96,11 @@ public class Cuckoo {
     }
 
     // Hashes an integer into another (maybe needs some changes)
-    private static int hash(Integer x) {
+    private static Integer hash(Integer x) {
         x ^= (x << 13);
         x ^= (x >>> 17);
         x ^= (x << 5);
-        return x;
+        return (x & 0x7fffffff);
     }
 
     
