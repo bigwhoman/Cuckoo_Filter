@@ -51,7 +51,7 @@ The most important difference between bloom and cuckoo filter is that bloom filt
 whole filter. Cuckoo uses less space than bloom filters in many cases. Cuckoo provides higher lookup performance than bloom filters.
 
 ### Cuckoo Parameters
-According to [Redis]([https://ieeexplore.ieee.org/document/9212434](https://redis.io/docs/data-types/probabilistic/cuckoo-filter/) these are the main parameters of the cuckoo filter :
+According to [Redis](https://redis.io/docs/data-types/probabilistic/cuckoo-filter/) these are the main parameters of the cuckoo filter :
 
 <li> ε : Target false ppositive rate </li>
 <li> f : Fingerprint length </li>
@@ -60,6 +60,17 @@ According to [Redis]([https://ieeexplore.ieee.org/document/9212434](https://redi
 <li> m : Number of buckets </li>
 <li> n : Number of items </li>
 <li> C : Average bits per item </li>
+<br>
+
+$$ 
+Capacity = \frac{n \times f}{α}
+$$
+
+<br>
+
+$$
+ε = \frac{buckets \times 2}{2^{(f)}}
+$$
 
 ## Implementing Java Version
 
