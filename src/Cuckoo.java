@@ -25,7 +25,7 @@ public class Cuckoo {
 
         // The hashes should be modded to the number of buckets
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
-        Integer i2  = i1 ^ hash(f) % buckets;
+        Integer i2  = (i1 ^ hash(f)) % buckets;
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if(bucketArray[i1][entry] == null){ 
@@ -47,7 +47,7 @@ public class Cuckoo {
             Integer randomBucketEntry = rand.nextInt(bucketEntries);
             Integer bucketEntryFingerprint = bucketArray[i][randomBucketEntry];
             bucketArray[i][randomBucketEntry] = f;
-            i = i ^ hash(f) % buckets;
+            i = (i ^ hash(f)) % buckets;
             for(Integer entry = 0; entry < bucketEntries ; entry++){
                 if(bucketArray[i][entry] == null){
                     bucketArray[i][entry] = bucketEntryFingerprint;
@@ -63,7 +63,7 @@ public class Cuckoo {
     public boolean lookup(String x){
         Integer f   = generateFingerprint(x);
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
-        Integer i2  = i1 ^ hash(f) % buckets; 
+        Integer i2  = (i1 ^ hash(f)) % buckets; 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if(bucketArray[i1][entry] != null && bucketArray[i1][entry].equals(f)){
                 return true;
@@ -83,7 +83,7 @@ public class Cuckoo {
     public boolean delete(String x){
         Integer f   = generateFingerprint(x);
         Integer i1  = (x.hashCode() & 0x7fffffff) % buckets;
-        Integer i2  = i1 ^ hash(f) % buckets; 
+        Integer i2  = (i1 ^ hash(f)) % buckets; 
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if(bucketArray[i1][entry] != null && bucketArray[i1][entry].equals(f)){
