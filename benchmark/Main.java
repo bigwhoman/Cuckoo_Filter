@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 import java.io.File;
 import java.util.Random;
@@ -21,7 +20,7 @@ public class Main {
         numberOfInserts = parseArguments(args, "-n", 1000000);
         numberOfLookups = parseArguments(args, "-l", 10000000);
         numberOfDeletes = parseArguments(args, "-d", 1000);
-        alphaRate = parseArguments(args, "-a", 2);
+        alphaRate = parseDoubleArguments(args, "-a", 2);
         fingerprintLen = parseArguments(args, "-f", 8);
         maxKicks = parseArguments(args, "-k", 5);
         bucketEntries = parseArguments(args, "-b", 4);
@@ -64,14 +63,23 @@ public class Main {
         // TEST BODY END      ---------------------
         long endTime = System.nanoTime();
         double elapsedTime = (endTime - startTime) / 1_000_000_000.0;
-        System.out.println("Elapsed time: " + elapsedTime + " seconds");
+        System.out.println(elapsedTime);
         return ;
     }
 
     private static Integer parseArguments(String[] args, String flag, int defaultValue) {
        for (int i = 0; i < args.length; i++) {
            if (args[i].equals(flag)) {
-               return Integer.parseInt(args[++i]);
+                return Integer.parseInt(args[++i]);
+           }
+       }
+       return defaultValue;
+    } 
+
+    private static Double parseDoubleArguments(String[] args, String flag, double defaultValue) {
+       for (int i = 0; i < args.length; i++) {
+           if (args[i].equals(flag)) {
+               return Double.parseDouble(args[++i]);
            }
        }
        return defaultValue;
