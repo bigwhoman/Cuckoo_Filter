@@ -32,8 +32,7 @@ The pseudo code shown in the paper is as below :
 
 ### Lookup
 Upon lookup for item x, the hash table is searched for the fingerprint of x and returns true if the fingerprint is found in the table. Bucket\[h<sub>1</sub>(fingerprint)\] and bucket\[h<sub>2</sub>(fingerprint)\] are searched.
-If it is not found, then we can definitely say that it does not exist in the table but if it is found, there is a possibility that the result could be false positive meaning that the item does not exist but the returned search query
-is true.
+If it is not found, then we can definitely say that it does not exist in the table but if it is found, there is a possibility, ε, that the result could be false positive meaning that the item does not exist but the returned search query is true.
 
 <br>
 
@@ -48,7 +47,19 @@ Upon deletion of item x, its fingerprint is searched in the hash table and if fo
 <img src="https://github.com/bigwhoman/Cuckoo_Filter/assets/79264715/7bf0b0f4-c805-4641-b845-c6e42a63f02b" width="500">
 
 ### Cuckoo vs Bloom
+The most important difference between bloom and cuckoo filter is that bloom filter <b>does not support dynamic deletions</b> meaning that each delete from the bloom filter would need reconstruction of the 
+whole filter. Cuckoo uses less space than bloom filters in many cases. Cuckoo provides higher lookup performance than bloom filters.
+
 ### Cuckoo Parameters
+According to [Redis]([https://ieeexplore.ieee.org/document/9212434](https://redis.io/docs/data-types/probabilistic/cuckoo-filter/) these are the main parameters of the cuckoo filter :
+
+<li> ε : Target false ppositive rate </li>
+<li> f : Fingerprint length </li>
+<li> α : Fill rate </li>
+<li> b : Entries per bucket </li>
+<li> m : Number of buckets </li>
+<li> n : Number of items </li>
+<li> C : Average bits per item </li>
 
 ## Implementing Java Version
 
