@@ -75,6 +75,35 @@ $$
 ## Implementing Java Version
 
 ## Testing Cuckoo 
+A testing java program is implemented to test the cuckoo data structure. You could find the testing program in 
+the benchmark folder. <br>
+The parameters of the program are as follows : 
+
+<li> -n : number of inserts -- default = 1000000 </li>
+<li> -l : number of lookups -- default = 10000000 </li>
+<li> -d : number of deletes -- default = 1000 </li>
+<li> -a : (capacity) / (number of inserts) -- default = 2 </li>
+<li> -f : fingerprint length -- default = 8 </li>
+<li> -k : maximum kicks when inserting -- default = 5 </li>
+<li> -n : number of each bucket entry -- default = 4 </li>
+
+Keep in mind that the number of buckets is calculated as follows : 
+
+$$ \lceil \frac{a * inserts}{bucket entries} \rceil $$ 
+
+<br>
+
+### Tested Parameter 1 : Inserts 
+<img src="/benchmark/inserts.png">
+
+### Tested Parameter 2 : Lookups 
+<img src="/benchmark/lookups.png">
+
+### Tested Parameter 3 : Bucket Entries 
+<img src="/benchmark/bucket_entries.png">
+
+### Tested Parameter 4 : Max Kicks
+<img src="/benchmark/max_kick.png">
 
 ## Open Question : 
 
