@@ -7,7 +7,7 @@ public class Main {
     static Integer   numberOfInserts;
     static Integer   numberOfDeletes;
     static Integer   numberOfLookups;
-    static Integer   fingerprintLen;
+    static Double   errorRate;
     static Integer   maxKicks;
     static Integer   bucketEntries;
     static Integer   buckets;
@@ -17,11 +17,11 @@ public class Main {
     static Random random = new Random();
     public static void main(String[] args) {
         
-        numberOfInserts = parseArguments(args, "-n", 1000000);
-        numberOfLookups = parseArguments(args, "-l", 10000000);
-        numberOfDeletes = parseArguments(args, "-d", 1000);
+        numberOfInserts = parseArguments(args, "-i", 10000);
+        numberOfLookups = parseArguments(args, "-l", 100000);
+        numberOfDeletes = parseArguments(args, "-d", 10);
         alphaRate = parseDoubleArguments(args, "-a", 2);
-        fingerprintLen = parseArguments(args, "-f", 8);
+        errorRate = parseDoubleArguments(args, "-e", 0.05);
         maxKicks = parseArguments(args, "-k", 5);
         bucketEntries = parseArguments(args, "-b", 4);
 
@@ -31,7 +31,7 @@ public class Main {
         nameSpaceSize = numberOfInserts * 1;
 
         nameSpace = new String[nameSpaceSize];
-        Cuckoo cuckoo = new Cuckoo(buckets, bucketEntries, maxKicks, fingerprintLen);
+        Cuckoo cuckoo = new Cuckoo(buckets, bucketEntries, maxKicks, errorRate);
         for(int i = 0 ; i < nameSpaceSize; i++)
             nameSpace[i] = generateRandomName(10);
 
