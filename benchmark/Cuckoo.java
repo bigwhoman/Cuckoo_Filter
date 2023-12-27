@@ -22,7 +22,7 @@ public class Cuckoo {
         this.bucketArray    = new HashMap<>();
         this.fingerprintLen = Double.valueOf(
                                 Math.ceil(
-                                           (Math.log(1/errorRate) / Math.log(2)) + 3)/loadFactor
+                                          ( (Math.log(1/errorRate) / Math.log(2)) + 3)/loadFactor)
                                          )
                                     .intValue();
     }
