@@ -79,11 +79,11 @@ A testing java program is implemented to test the cuckoo data structure. You cou
 the benchmark folder. <br>
 The parameters of the program are as follows : 
 
-<li> -n : number of inserts -- default = 1000000 </li>
-<li> -l : number of lookups -- default = 10000000 </li>
-<li> -d : number of deletes -- default = 1000 </li>
+<li> -i : number of inserts -- default = 10000 </li>
+<li> -l : number of lookups -- default = 100000 </li>
+<li> -d : number of deletes -- default = 10 </li>
 <li> -a : (capacity) / (number of inserts) -- default = 2 </li>
-<li> -f : fingerprint length -- default = 8 </li>
+<li> -e : error rate -- default = 0.05 </li>
 <li> -k : maximum kicks when inserting -- default = 5 </li>
 <li> -n : number of each bucket entry -- default = 4 </li>
 
@@ -93,7 +93,7 @@ $$ \lceil \frac{a * inserts}{bucket entries} \rceil $$
 
 <br>
 
-### Tested Parameter 1 : Inserts 
+### Tested Parameter 1 : Inserts
 <img src="/benchmark/inserts.png">
 
 ### Tested Parameter 2 : Lookups 
@@ -103,7 +103,10 @@ $$ \lceil \frac{a * inserts}{bucket entries} \rceil $$
 <img src="/benchmark/bucket_entries.png">
 
 ### Tested Parameter 4 : Max Kicks
-<img src="/benchmark/max_kick.png">
+<img src="/benchmark/max_kicks.png">
+
+### Tested Parameter 5 : Bucket Entries -- 50000000 Lookups
+<img src="/benchmark/bucket_entries-50000000_lookups.png">
 
 ## Open Question : 
 
