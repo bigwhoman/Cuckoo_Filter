@@ -9,17 +9,20 @@ public class Cuckoo {
     private Integer bucketEntries;
     private Integer maxKicks;
     private Integer fingerprintLen;
-
+    private Integer itemsInCuckoo;
+    private Double  loadFactor;
     // Gets the number of buckets, max entries a bucket could have and maximum number of replacements in
     // case of a number gets thrown out
     public Cuckoo(Integer buckets, Integer bucketEntries, Integer maxKicks, double errorRate){
         this.buckets        = buckets;
         this.bucketEntries  = bucketEntries;
         this.maxKicks       = maxKicks;
+        this.itemsInCuckoo  = 0;
+        this.loadFactor     = 95.5/100;
         this.bucketArray    = new HashMap<>();
         this.fingerprintLen = Double.valueOf(
                                 Math.ceil(
-                                           1.44 * (Math.log(1/errorRate) / Math.log(2)))
+                                           (Math.log(1/errorRate) / Math.log(2)) + 3)/loadFactor
                                          )
                                     .intValue();
     }
@@ -44,6 +47,7 @@ public class Cuckoo {
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if((bucketArray.get(i2))[entry] == null){
                 bucketArray.get(i2)[entry] = f;
+                itemsInCuckoo ++;
                 return true;
             }
         }
@@ -58,6 +62,7 @@ public class Cuckoo {
             for(Integer entry = 0; entry < bucketEntries ; entry++){
                 if((bucketArray.get(i))[entry] == null){
                     bucketArray.get(i2)[entry] = bucketEntryFingerprint;
+                    itemsInCuckoo ++;
                     return true;
                 }
             }
@@ -104,6 +109,7 @@ public class Cuckoo {
                 bucketArray.get(i1)[entry] != null &&
                 bucketArray.get(i1)[entry].equals(f)){
                     bucketArray.get(i1)[entry] = null;
+                    itemsInCuckoo --;
                     return true;
             }
         }
@@ -113,6 +119,7 @@ public class Cuckoo {
                 bucketArray.get(i2)[entry] != null && 
                 bucketArray.get(i2)[entry].equals(f)){
                     bucketArray.get(i2)[entry] = null;
+                    itemsInCuckoo --;
                     return true;
             }
         }        
