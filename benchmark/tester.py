@@ -16,7 +16,7 @@ parameters = {
             #   ,"bucket_entries" : ["-b", bucketEntries ]
             #   ,"lookups"        : ["-l", lookups]
             #   ,"inserts"        : ["-i", inserts]
-              "bucket_entries-50000000_lookups"        : ["-b", bucketEntries]
+              "max_kicks-50000000_lookups"        : ["-k", max_kicks]
             #   ,"inserts"        : ["-i", inserts]
             #   ,"inserts"        : ["-i", inserts] 
               }
