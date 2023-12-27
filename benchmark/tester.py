@@ -10,10 +10,16 @@ inserts = [10,100,1000,10000,100000]
 # inserts = [10,100,1000,10000,100000,1000000,10000000]
 max_kicks = [1, 2, 5, 10 ,20 ,40]
 # max_kicks = [1, 2, 5, 10 ,20 ,40, 100]
-parameters = {"max_kicks"       : ["-k", max_kicks]
-              ,"bucket_entries" : ["-b", bucketEntries ]
-              ,"lookups"        : ["-l", lookups]
-              ,"inserts"        : ["-i", inserts]}
+parameters = {
+    
+            #    "max_kicks"       : ["-k", max_kicks]
+            #   ,"bucket_entries" : ["-b", bucketEntries ]
+            #   ,"lookups"        : ["-l", lookups]
+            #   ,"inserts"        : ["-i", inserts]
+              "bucket_entries-50000000_lookups"        : ["-b", bucketEntries]
+            #   ,"inserts"        : ["-i", inserts]
+            #   ,"inserts"        : ["-i", inserts] 
+              }
 
 
 def compile_and_run_java(filename, args) -> float:
@@ -24,7 +30,7 @@ def compile_and_run_java(filename, args) -> float:
 for parameter in parameters.keys() :
     results = []
     for p in parameters[parameter][1]:
-        elapsed_time = compile_and_run_java('Main.java', [parameters[parameter][0], str(p)])
+        elapsed_time = compile_and_run_java('Main.java', [parameters[parameter][0], str(p), "-l", "10000000"])
         results.append([p, elapsed_time])
 
 
@@ -44,7 +50,7 @@ for parameter in parameters.keys() :
             data.append(list(map(float, row)))
 
     plt.plot(*zip(*data))
-    plt.xlabel(parameter)
+    plt.xlabel(parameter.split("-")[0])
     plt.ylabel('elapsed time')
     plt.title(f'Performance vs {parameter}')
     plt.savefig(f'{parameter}.png')
