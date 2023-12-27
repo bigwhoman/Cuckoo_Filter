@@ -108,6 +108,8 @@ $$ \lceil \frac{a * inserts}{bucket entries} \rceil $$
 ### Tested Parameter 4 : Max Kicks
 <img src="/benchmark/max_kicks.png">
 
+### Tested Parameter 4 : Max Kicks -- 50000000 Lookups
+<img src="/benchmark/max_kicks-50000000_lookups.png">
 
 ## Open Question : 
 
