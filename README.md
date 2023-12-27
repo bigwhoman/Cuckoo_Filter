@@ -111,6 +111,6 @@ $$ \lceil \frac{a * inserts}{bucket entries} \rceil $$
 ### Tested Parameter 6 : Max Kicks -- 50000000 Lookups
 <img src="/benchmark/max_kicks-50000000_lookups.png">
 
-## Open Question : 
+## Scalable Cuckoo Filter
 
 ## Managing Multi-Sets
