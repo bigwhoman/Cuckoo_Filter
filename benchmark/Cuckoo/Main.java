@@ -3,15 +3,15 @@ import java.io.File;
 import java.util.Random;
 public class Main {
     static String[] nameSpace;
-    static Integer   nameSpaceSize;
-    static Integer   numberOfInserts;
-    static Integer   numberOfDeletes;
-    static Integer   numberOfLookups;
-    static Double   errorRate;
-    static Integer   maxKicks;
-    static Integer   bucketEntries;
-    static Integer   buckets;
-    static Double   alphaRate;
+    static int   nameSpaceSize;
+    static int   numberOfInserts;
+    static int   numberOfDeletes;
+    static int   numberOfLookups;
+    static double   errorRate;
+    static int   maxKicks;
+    static int   bucketEntries;
+    static int   buckets;
+    static double   alphaRate;
 
 
     static Random random = new Random();
@@ -67,7 +67,7 @@ public class Main {
         return ;
     }
 
-    private static Integer parseArguments(String[] args, String flag, int defaultValue) {
+    private static int parseArguments(String[] args, String flag, int defaultValue) {
        for (int i = 0; i < args.length; i++) {
            if (args[i].equals(flag)) {
                 return Integer.parseInt(args[++i]);
@@ -76,7 +76,7 @@ public class Main {
        return defaultValue;
     } 
 
-    private static Double parseDoubleArguments(String[] args, String flag, double defaultValue) {
+    private static double parseDoubleArguments(String[] args, String flag, double defaultValue) {
        for (int i = 0; i < args.length; i++) {
            if (args[i].equals(flag)) {
                return Double.parseDouble(args[++i]);
