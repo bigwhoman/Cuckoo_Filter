@@ -94,22 +94,22 @@ $$ \lceil \frac{a * inserts}{bucket entries} \rceil $$
 <br>
 
 ### Tested Parameter 1 : Inserts
-<img src="/benchmark/inserts.png">
+<img src="/benchmark/Cuckoo/inserts.png">
 
 ### Tested Parameter 2 : Lookups 
-<img src="/benchmark/lookups.png">
+<img src="/benchmark/Cuckoo/lookups.png">
 
 ### Tested Parameter 3 : Bucket Entries 
-<img src="/benchmark/bucket_entries.png">
+<img src="/benchmark/Cuckoo/bucket_entries.png">
 
 ### Tested Parameter 4 : Bucket Entries -- 50000000 Lookups
-<img src="/benchmark/bucket_entries-50000000_lookups.png">
+<img src="/benchmark/Cuckoo/bucket_entries-50000000_lookups.png">
 
 ### Tested Parameter 5 : Max Kicks
-<img src="/benchmark/max_kicks.png">
+<img src="/benchmark/Cuckoo/max_kicks.png">
 
 ### Tested Parameter 6 : Max Kicks -- 50000000 Lookups
-<img src="/benchmark/max_kicks-50000000_lookups.png">
+<img src="/benchmark/Cuckoo/max_kicks-50000000_lookups.png">
 
 ## Scalable Cuckoo Filter
 
