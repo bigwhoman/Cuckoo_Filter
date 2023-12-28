@@ -26,12 +26,19 @@ public class Cuckoo {
                                          )
                                     .intValue();
     }
+    
+    public double getDensity(){
+        return ((Double.valueOf(itemsInCuckoo) *  Double.valueOf(fingerprintLen)) / (Double.valueOf(buckets) * Double.valueOf(bucketEntries)));
+    }
 
     // Inserts string x into the cuckoo data structure
     public boolean insert(String x){
-        BitSet f   = generateFingerprint(x);
+        
+        // the filter declares itself full so no more inserts could be made
+        if (getDensity() > loadFactor)
+            return false;
 
-        // The hashes should be modded to the number of buckets
+        BitSet f   = generateFingerprint(x);
         BitSet i1  = BitSet.valueOf(new long[]{x.hashCode()});
         BitSet i2  = (BitSet) i1.clone();
         i2.xor(BitSet.valueOf(new long[]{f.hashCode()}));
@@ -42,7 +49,14 @@ public class Cuckoo {
         if(bucketArray.get(i2) == null){
             bucketArray.put(i2, new BitSet[bucketEntries]);
         }
-        // ------------------------------------------
+
+        for(Integer entry = 0; entry < bucketEntries ; entry++){
+            if((bucketArray.get(i1))[entry] == null){
+                bucketArray.get(i1)[entry] = f;
+                itemsInCuckoo ++;
+                return true;
+            }
+        }
 
         for(Integer entry = 0; entry < bucketEntries ; entry++){
             if((bucketArray.get(i2))[entry] == null){
@@ -61,7 +75,7 @@ public class Cuckoo {
             i.xor(BitSet.valueOf(new long[]{f.hashCode()}));
             for(Integer entry = 0; entry < bucketEntries ; entry++){
                 if((bucketArray.get(i))[entry] == null){
-                    bucketArray.get(i2)[entry] = bucketEntryFingerprint;
+                    bucketArray.get(i)[entry] = bucketEntryFingerprint;
                     itemsInCuckoo ++;
                     return true;
                 }
