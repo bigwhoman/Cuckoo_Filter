@@ -5,8 +5,7 @@ import java.util.UUID;
 public class Main {
 
     public static void main(String[] args) {
-        Cuckoo cuckoo = new Cuckoo(100, 4, 500, 0.05);
-        
+        ScalableCuckoo cuckoo = new ScalableCuckoo(2, 4, 500, 0.05,2);
         cuckoo.insert("hell");
         cuckoo.insert("hool");
         cuckoo.insert("hill");
@@ -25,7 +24,6 @@ public class Main {
         System.out.println(cuckoo.delete("stall")); // true
         System.out.println(cuckoo.lookup("stall")); // false
         System.out.println(cuckoo.delete("stall")); // false
-        System.out.println(cuckoo.getDensity());
         return ;
     }
 
