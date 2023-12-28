@@ -1,15 +1,15 @@
 import java.util.ArrayList;
 public class ScalableCuckoo{
 
-    private Integer buckets;
-    private Integer bucketEntries;
-    private Integer maxKicks;
-    private Double scaleThreshold;
-    private Double errorRate;
-    private Integer scaleFactor;
+    private int buckets;
+    private int bucketEntries;
+    private int maxKicks;
+    private double scaleThreshold;
+    private double errorRate;
+    private int scaleFactor;
     private ArrayList<Cuckoo> cuckooList;
     
-    public ScalableCuckoo(Integer buckets, Integer bucketEntries, Integer maxKicks, double errorRate, Integer scaleFactor){
+    public ScalableCuckoo(int buckets, int bucketEntries, int maxKicks, double errorRate, int scaleFactor){
         this.scaleThreshold = 0.9;
         this.cuckooList  = new ArrayList<>();
         this.buckets = buckets;
