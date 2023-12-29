@@ -1,0 +1,12 @@
+insert A
+insert B
+insert C
+lookup A
+lookup B
+lookup A
+lookup F
+delete A
+lookup A
+insert A
+lookup A
+exit
